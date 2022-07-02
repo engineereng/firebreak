@@ -15,7 +15,7 @@ public class PlayerMovement : MonoBehaviour
     //move left right
     private void Update() // User input
 	{
-		float horizontalInput = Input.GetAxis("Horizonatal"); # stores value
+		float horizontalInput = Input.GetAxis("Horizontal"); # stores value
 		body.velocity = new Vector2(horizontalInput * speed,body.velocity.y);
 		
 		if(horizontalInput > 0.01f)
