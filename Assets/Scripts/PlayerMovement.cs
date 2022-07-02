@@ -18,14 +18,16 @@ public class PlayerMovement : MonoBehaviour
 		float horizontalInput = Input.GetAxis("Horizontal");
 		body.velocity = new Vector2(horizontalInput * speed,body.velocity.y);
 		
-		if(horizontalInput > 0.01f)
+		//flip sprite upon left right
+		if (horizontalInput > 0.01f)
 			transform.localScale = Vector3.one;
 		else if (horizontalInput < -0.01f)
-			transform.localScale = new Vector3(-1,1,1);
+			transform.localScale = new Vector3(-1, 1, 1);
 		
-		if(Input.GetKey(KeyCode.Space) && grounded) //jump when grounded
-			body.velocity = new Vector2(body.velocity.x, speed); 
-			
+		if (Input.GetKey(KeyCode.Space) && grounded) //jump when grounded
+			Jump(); 
+		else if (Input.GetKey(KeyCode.W) && grounded)
+			Jump();	
 		//set animator parameters
 		anim.SetBool("run", horizontalInput != 0); //run into idle; idle into run
 		anim.SetBool("grounded", grounded); //run into jump; jump end
