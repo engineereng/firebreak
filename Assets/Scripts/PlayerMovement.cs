@@ -11,7 +11,6 @@ public class PlayerMovement : MonoBehaviour
     private void Awake()
     {
         body = GetComponent<Rigidbody2D>();
-        body = GetComponent<Rigidbody2d>();
         anim = GetComponent<Animator>();
     }
     //move left right
