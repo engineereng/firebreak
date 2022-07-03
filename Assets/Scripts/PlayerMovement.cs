@@ -4,7 +4,6 @@ public class PlayerMovement : MonoBehaviour
 {
     [SerializeField] private float speed; //Unity Speed Parameter
     private Rigidbody2D body; // integrate asset
-    private Rigidbody2d body; // integrate asset
     private Animator anim;
     private bool grounded;
 
