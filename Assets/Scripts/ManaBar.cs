@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class ManaBar : MonoBehaviour
 {
-public Slider manaBar
+public Slider manaBar;
 
 private int maxMana = 100;
 private int currentMana;
