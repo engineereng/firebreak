@@ -8,7 +8,6 @@ public class CameraController : MonoBehaviour
     private float currentPosX; //Tells camera to go to a position
     private Vector3 velocity = Vector3.zero;
 
-    //Follow Player
     [SerializeField] private Transform player;
     [SerializeField] private float aheadDistance;
     [SerializeField] private float cameraSpeed;
@@ -20,6 +19,11 @@ public class CameraController : MonoBehaviour
         transform.position = new Vector3(player.position.x + lookAhead, player.position.y, transform.position.z); //Camera will be ahead of player
         lookAhead = Mathf.Lerp(lookAhead, (aheadDistance * player.localScale.x), Time.deltaTime * cameraSpeed);
 
+
     }
     
+
+
+    }
+
 }
