@@ -8,6 +8,7 @@ TagManager:
   - Crosshair
   - Vine
   - Trap
+  - Background
   layers:
   - Default
   - TransparentFX
@@ -42,6 +43,12 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Background
+    uniqueID: 1166921297
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Terrain
+    uniqueID: 3127338799
     locked: 0
