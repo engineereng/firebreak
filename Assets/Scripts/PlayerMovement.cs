@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -6,6 +7,9 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D body; // integrate asset
     private Animator anim;
     private bool grounded;
+	[SerializeField] public float fallMultiplier; //Better Jump
+	[SerializeField] public float lowJumpMultiplier;
+	public float jumpVelocity;
 
     private void Awake()
     {
@@ -38,13 +42,24 @@ public class PlayerMovement : MonoBehaviour
 		
 		if (Input.GetKey(KeyCode.Space) && grounded) //jump when grounded
 			body.velocity = new Vector2(body.velocity.x, speed); 
+
+		//Better Jump
+		if (body.velocity.y < 0)
+		{
+			body.velocity += Vector2.up * Physics2D.gravity.y * (fallMultiplier - 1) * Time.deltaTime;
+		}
+		else if (body.velocity.y > 0 && !Input.GetKey(KeyCode.Space) || !Input.GetKey(KeyCode.W))
+		{
+			body.velocity += Vector2.up * Physics2D.gravity.y * (lowJumpMultiplier - 1) * Time.deltaTime;
+		}
 	}
-	//jump
+	//Jump
 	private void Jump()
 	{
 		body.velocity = new Vector2(body.velocity.x, speed);
 		anim.SetTrigger("jump");
 		grounded = false;
+		GetComponent<Rigidbody2D>().velocity = Vector2.up * jumpVelocity;
 	}
 	
 	private void OnCollisionEnter2D(Collision2D collision)
