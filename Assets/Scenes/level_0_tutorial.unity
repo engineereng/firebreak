@@ -11533,6 +11533,8 @@ MonoBehaviour:
   fallMultiplier: 3.5
   lowJumpMultiplier: 1.5
   jumpVelocity: 12.5
+  crosshair: {fileID: 971969046}
+  movementDirection: {x: 0, y: 0}
 --- !u!212 &1963499410
 SpriteRenderer:
   m_ObjectHideFlags: 0

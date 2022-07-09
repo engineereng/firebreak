@@ -10,6 +10,7 @@ public class PlayerMovement : MonoBehaviour
 	[SerializeField] public float fallMultiplier; //Better Jump
 	[SerializeField] public float lowJumpMultiplier;
 	public float jumpVelocity;
+	bool facingRight = true;
 
     private void Awake()
     {
@@ -22,12 +23,6 @@ public class PlayerMovement : MonoBehaviour
 		float horizontalInput = Input.GetAxis("Horizontal");
 		body.velocity = new Vector2(horizontalInput * speed, body.velocity.y);
 		
-		//flip sprite upon left right
-		if (horizontalInput > 0.01f)
-			transform.localScale = new Vector3(0.25f, 0.25f, 0.25f);
-		else if (horizontalInput < -0.01f)
-			transform.localScale = new Vector3(-0.25f, 0.25f, 0.25f);
-		
 		if ((Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.W)) && grounded) //jump when grounded
 			Jump();
 		//set animator parameters
@@ -35,10 +30,10 @@ public class PlayerMovement : MonoBehaviour
 		anim.SetBool("grounded", grounded); //run into jump; jump end
 		body.velocity = new Vector2(horizontalInput * speed,body.velocity.y);
 		
-		if (horizontalInput > 0.01f)
-			transform.localScale = new Vector3(0.25f, 0.25f, 0.25f);
-		else if (horizontalInput < -0.01f)
-			transform.localScale = new Vector3(-0.25f, 0.25f, 0.25f);
+		//if (horizontalInput > 0.01f)
+			//transform.localScale = new Vector3(0.25f, 0.25f, 0.25f);
+		//else if (horizontalInput < -0.01f)
+			//transform.localScale = new Vector3(-0.25f, 0.25f, 0.25f);
 		
 		if (Input.GetKey(KeyCode.Space) && grounded) //jump when grounded
 			body.velocity = new Vector2(body.velocity.x, speed); 
@@ -51,6 +46,20 @@ public class PlayerMovement : MonoBehaviour
 		else if (body.velocity.y > 0 && !Input.GetKey(KeyCode.Space) || !Input.GetKey(KeyCode.W))
 		{
 			body.velocity += Vector2.up * Physics2D.gravity.y * (lowJumpMultiplier - 1) * Time.deltaTime;
+		}
+	}
+	void FixedUpdate()
+	{
+		Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+		
+		float horizontalInput = Input.GetAxis("Horizontal");
+		if (mousePos.x > transform.position.x && !facingRight) //mouse position to right
+		{
+			Flip();
+		}
+		if (mousePos.x < transform.position.x && facingRight) //mouse position to left
+		{
+			Flip();
 		}
 	}
 	//Jump
@@ -66,6 +75,14 @@ public class PlayerMovement : MonoBehaviour
 	{
 		if (collision.gameObject.tag == "Ground") 
 			grounded = true;
+	}
+	//Flip
+	void Flip()
+	{
+		Vector3 currentScale = gameObject.transform.localScale;
+		currentScale.x *= -1;
+		gameObject.transform.localScale = currentScale;
+		facingRight = !facingRight;
 	}
 }
 
