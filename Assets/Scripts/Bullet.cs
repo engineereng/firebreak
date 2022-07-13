@@ -18,10 +18,21 @@ public class Bullet : MonoBehaviour
      void OnCollisionEnter2D (Collision2D collision)
     {
         // TODO: Spawn an effect
-        // GameObject effect = Instantiate(hitEffect, transform.position, Quaternion.identity);
-        // Destroy(Effector2D, 5f); //destroy the effect after 5 seconds
+
         Debug.Log(collision.gameObject.name);
-        if (!collision.gameObject.CompareTag("Player")){
+        if (!collision.gameObject.CompareTag("Player"))
+        {
+            // if (collision.gameObject.CompareTag("Plant")) {
+                //spawn hit effect
+                Plant plant = collision.gameObject.GetComponent<Plant>();
+                if (plant != null)
+                {
+                    plant.Heal(10);
+                    Debug.Log("Hit a plant!");
+                }
+                // GameObject effect = Instantiate(hitEffect, transform.position, Quaternion.identity);
+                // Destroy(Effector2D, 5f); //destroy the effect after 5 seconds
+            // }
             Destroy(gameObject);
         }
     }
