@@ -33,6 +33,13 @@ public class Bullet : MonoBehaviour
                 // GameObject effect = Instantiate(hitEffect, transform.position, Quaternion.identity);
                 // Destroy(Effector2D, 5f); //destroy the effect after 5 seconds
             // }
+
+                BranchPlatform branch = collision.gameObject.GetComponent<BranchPlatform>();
+                if (branch != null)
+                {
+                    branch.Heal(10);
+                    Debug.Log("Hit a branch!");
+                }
             Destroy(gameObject);
         }
     }
