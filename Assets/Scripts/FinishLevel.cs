@@ -12,6 +12,12 @@ public class FinishLevel : MonoBehaviour
 	public bool isRestored;
 	public BoxCollider2D playerBoxCollider;
     
+	public void Start()
+	{
+        Physics2D.IgnoreCollision(playerBoxCollider,
+                        GetComponent<BoxCollider2D>(), 
+                        true);
+	}
 	public void Heal (int healing)
     {
         life += healing;
@@ -28,9 +34,6 @@ public class FinishLevel : MonoBehaviour
             life = 0;
         }
         isAlive = life > 50;
-        Physics2D.IgnoreCollision(playerBoxCollider,
-                        GetComponent<BoxCollider2D>(), 
-                        !isAlive);
         ChangeColor();
 		isRestored = (life >= 99);
 		if (isRestored)
