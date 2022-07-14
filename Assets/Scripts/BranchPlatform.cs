@@ -10,6 +10,8 @@ public class BranchPlatform : MonoBehaviour
     public float life = 0.0f;
     private readonly float lifeDecay = 0.05f;
     private readonly float LIFECAP = 100.0f;
+    public bool isAlive = false;
+    public BoxCollider2D playerBoxCollider;
 
     public void Heal (int healing)
     {
@@ -33,7 +35,12 @@ public class BranchPlatform : MonoBehaviour
         {
             life = 0;
         }
+        isAlive = life > 50;
+        Physics2D.IgnoreCollision(playerBoxCollider,
+                        GetComponent<BoxCollider2D>(), 
+                        !isAlive);
         ChangeColor();
+        
     }
     private void ChangeColor()
     {
@@ -42,15 +49,9 @@ public class BranchPlatform : MonoBehaviour
     
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (life > 50 && collision.gameObject.tag == "Player")
+        if (collision.gameObject.CompareTag("Player"))
         {
-            //Physics.IgnoreCollision(GetComponent<Collider>(), true);
-            GetComponent<BoxCollider2D> ().enabled = false;
-        }
-        if (life <= 50 && collision.gameObject.tag == "Player")
-        {
-            //Physics.IgnoreCollision(Branch.collider2D, GetComponent<Collider>(), false);
-            GetComponent<BoxCollider2D> ().enabled = true;
+            Debug.Log("Hit a player");
         }
     }
 }

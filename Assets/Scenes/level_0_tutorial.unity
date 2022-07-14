@@ -420,6 +420,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 0}
   life: 0
+  isAlive: 0
+  playerBoxCollider: {fileID: 1963499408}
 --- !u!95 &196295065
 Animator:
   serializedVersion: 4
@@ -500,7 +502,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 196295063}
   m_LocalRotation: {x: -0, y: -0, z: 0.70398754, w: -0.7102123}
-  m_LocalPosition: {x: 8.9693, y: 6.5075, z: 0}
+  m_LocalPosition: {x: -17.66, y: 0.61, z: 0}
   m_LocalScale: {x: 0.41298068, y: 0.41298068, z: 0.41298068}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -517,7 +519,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 2.2904456, y: 0}
