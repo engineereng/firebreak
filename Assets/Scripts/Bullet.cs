@@ -40,6 +40,12 @@ public class Bullet : MonoBehaviour
                     branch.Heal(10);
                     Debug.Log("Hit a branch!");
                 }
+
+                FinishLevel finish = collision.gameObject.GetComponent<FinishLevel>();
+                {
+                    finish.Heal(10);
+                    Debug.Log("Hit the crystal!");
+                }
             Destroy(gameObject);
         }
     }
