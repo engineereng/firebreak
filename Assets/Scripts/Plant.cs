@@ -30,6 +30,7 @@ public class Plant : MonoBehaviour
         {
             life = 0;
         }
+        
         ChangeColor();
     }
 }
