@@ -43,6 +43,7 @@ public class Bullet : MonoBehaviour
 
                 FinishLevel finish = collision.gameObject.GetComponent<FinishLevel>();
                 {
+                if (finish != null)
                     finish.Heal(10);
                     Debug.Log("Hit the crystal!");
                 }
