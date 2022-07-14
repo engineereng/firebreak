@@ -12,6 +12,8 @@ public class BranchPlatform : MonoBehaviour
     private readonly float LIFECAP = 100.0f;
     public bool isAlive = false;
     public BoxCollider2D playerBoxCollider;
+    public Sprite spriteRenderer;
+    public Sprite healthySprite;
 
     public void Heal (int healing)
     {
@@ -40,7 +42,14 @@ public class BranchPlatform : MonoBehaviour
                         GetComponent<BoxCollider2D>(), 
                         !isAlive);
         ChangeColor();
-        
+        if (isAlive)
+        {
+            this.gameObject.GetComponent<SpriteRenderer>().sprite = healthySprite;
+        }
+        if (!isAlive)
+        {
+            this.gameObject.GetComponent<SpriteRenderer>().sprite = spriteRenderer;
+        } 
     }
     private void ChangeColor()
     {
