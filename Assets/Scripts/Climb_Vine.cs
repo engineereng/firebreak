@@ -3,9 +3,9 @@ using UnityEngine;
 public class Climb_Vine : MonoBehaviour
 {
 	private float vertical;
-	private float speed = 8f;
-	private bool isVine;
-	private bool isClimbing;
+	private readonly float speed = 8f;
+	public bool isVine;
+	public bool isClimbing;
 	
 	[SerializeField] private Rigidbody2D body;
 	
@@ -13,7 +13,10 @@ public class Climb_Vine : MonoBehaviour
 	{
 		vertical = Input.GetAxis("Vertical");
 		
-		if (isVine && Mathf.Abs(vertical) > 0f)
+		if (!isVine)
+		{
+			isClimbing = false;
+		} else if (Mathf.Abs(vertical) > 0f)
 		{
 			isClimbing = true;
 		}
@@ -35,9 +38,19 @@ public class Climb_Vine : MonoBehaviour
 	
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
-		if (collision.CompareTag("Vine"))
+		VineSegment vine = collision.GetComponent<VineSegment>();
+		if (vine != null)
 		{
-			isVine = true;
+			isVine = vine.isAlive;
+		}
+	}
+
+	private void OnTriggerStay2D (Collider2D collision)
+	{
+		VineSegment vine = collision.GetComponent<VineSegment>();
+		if (vine != null)
+		{
+			isVine = vine.isAlive;
 		}
 	}
 	
