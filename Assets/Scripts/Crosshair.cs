@@ -15,7 +15,7 @@ public class Crosshair : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         targetPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         targetPos.z = Camera.main.transform.position.z + Camera.main.nearClipPlane;

@@ -3,12 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class FinishLevel : MonoBehaviour
+public class FinishLevel : Plant
 {
-	public float life = 0.0f;
-    private readonly float lifeDecay = 0.05f;
-    private readonly float LIFECAP = 100.0f;
-	public bool isAlive = false;
 	public bool isRestored;
 	public BoxCollider2D playerBoxCollider;
     
@@ -18,32 +14,13 @@ public class FinishLevel : MonoBehaviour
                         GetComponent<BoxCollider2D>(), 
                         true);
 	}
-	public void Heal (int healing)
-    {
-        life += healing;
-        if (life > LIFECAP)
-        {
-            life = LIFECAP;
-        }        
-    }
     private void FixedUpdate()
     {
-        life -= lifeDecay;
-        if (life < 0)
-        {
-            life = 0;
-        }
-        isAlive = life > 50;
-        ChangeColor();
-		isRestored = (life >= 99);
+		isRestored = life >= 99;
 		if (isRestored)
 		{
 			NextLevel();
 		}
-    }
-    private void ChangeColor()
-    {
-        GetComponent<SpriteRenderer>().color = new Color (0.0f, life / LIFECAP, 0, 1.0f);
     }
 	private void NextLevel()
 	{

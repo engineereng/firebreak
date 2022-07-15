@@ -10,11 +10,27 @@ public class Bullet : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        rb.velocity = transform.right * speed;        
+        rb.velocity = transform.right * speed;    
+        Destroy(gameObject, 5.0f);    
     }
 
-    // TODO add hit effect
-    // public GameObject hitEffect;
+    void OnTriggerEnter2D (Collider2D other)
+    {
+        Debug.Log(other.gameObject.name);
+        if (!other.gameObject.CompareTag("Player"))
+        {
+            Plant plant = other.gameObject.GetComponent<Plant>();
+                if (plant != null)
+                {
+                    plant.Heal(10);
+                    Debug.Log("Hit a plant!");
+                }
+            Destroy(gameObject);
+        }
+    }
+
+    // // TODO add hit effect
+    // // public GameObject hitEffect;
      void OnCollisionEnter2D (Collision2D collision)
     {
         // TODO: Spawn an effect
@@ -22,31 +38,12 @@ public class Bullet : MonoBehaviour
         Debug.Log(collision.gameObject.name);
         if (!collision.gameObject.CompareTag("Player"))
         {
-            // if (collision.gameObject.CompareTag("Plant")) {
-                //spawn hit effect
-                Plant plant = collision.gameObject.GetComponent<Plant>();
-                if (plant != null)
-                {
-                    plant.Heal(10);
-                    Debug.Log("Hit a plant!");
-                }
-                // GameObject effect = Instantiate(hitEffect, transform.position, Quaternion.identity);
-                // Destroy(Effector2D, 5f); //destroy the effect after 5 seconds
-            // }
-
-                BranchPlatform branch = collision.gameObject.GetComponent<BranchPlatform>();
-                if (branch != null)
-                {
-                    branch.Heal(10);
-                    Debug.Log("Hit a branch!");
-                }
-
-                FinishLevel finish = collision.gameObject.GetComponent<FinishLevel>();
-                if (finish != null)
-                {
-                    finish.Heal(10);
-                    Debug.Log("Hit the crystal!");
-                }
+            Plant plant = collision.gameObject.GetComponent<Plant>();
+            if (plant != null)
+            {
+                plant.Heal(10);
+                Debug.Log("Hit a plant!");
+            }
             Destroy(gameObject);
         }
     }
