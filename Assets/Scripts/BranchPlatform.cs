@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class BranchPlatform : MonoBehaviour
 {
-    
-    [SerializeField] private Rigidbody2D rb;
-    private Animator anim;
+    [SerializeField] private Animator anim;
     public float life = 0.0f;
     private readonly float lifeDecay = 0.05f;
     private readonly float LIFECAP = 100.0f;
     public bool isAlive = false;
     public BoxCollider2D playerBoxCollider;
+    public Sprite spriteRenderer;
+    public Sprite healthySprite;
 
     public void Heal (int healing)
     {
@@ -21,10 +21,8 @@ public class BranchPlatform : MonoBehaviour
             life = LIFECAP;
         }        
     }
-    
     private void Awake()
     {
-        rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
     }
     
@@ -40,7 +38,8 @@ public class BranchPlatform : MonoBehaviour
                         GetComponent<BoxCollider2D>(), 
                         !isAlive);
         ChangeColor();
-        
+        anim.SetBool("BranchGrowth", isAlive);
+        this.gameObject.GetComponent<SpriteRenderer>().sprite = isAlive ? healthySprite : spriteRenderer;
     }
     private void ChangeColor()
     {
