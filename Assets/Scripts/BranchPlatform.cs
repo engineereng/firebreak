@@ -38,16 +38,8 @@ public class BranchPlatform : MonoBehaviour
                         GetComponent<BoxCollider2D>(), 
                         !isAlive);
         ChangeColor();
-        if (isAlive)
-        {
-            anim.SetBool("BranchGrowth", true);
-            this.gameObject.GetComponent<SpriteRenderer>().sprite = healthySprite;
-        }
-        if (!isAlive)
-        {
-            anim.SetBool("BranchGrowth", false);
-            this.gameObject.GetComponent<SpriteRenderer>().sprite = spriteRenderer;
-        } 
+        anim.SetBool("BranchGrowth", isAlive);
+        this.gameObject.GetComponent<SpriteRenderer>().sprite = isAlive ? healthySprite : spriteRenderer;
     }
     private void ChangeColor()
     {
