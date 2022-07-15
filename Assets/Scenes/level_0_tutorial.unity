@@ -419,9 +419,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7520d58d07d1e6f49821f8d6b36077ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  anim: {fileID: 0}
   life: 0
   isAlive: 0
   playerBoxCollider: {fileID: 1963499408}
+  spriteRenderer: {fileID: 646063586, guid: 1a8b0e48653a0b2489ae87f8e187a013, type: 3}
+  healthySprite: {fileID: 814634465, guid: 1a8b0e48653a0b2489ae87f8e187a013, type: 3}
 --- !u!95 &196295065
 Animator:
   serializedVersion: 4
@@ -432,8 +435,8 @@ Animator:
   m_GameObject: {fileID: 196295063}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
+  m_Controller: {fileID: 9100000, guid: 59b3fc86cf7bf7e419488c8e72d8a742, type: 2}
+  m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
@@ -493,7 +496,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
+  m_SpriteSortPoint: 1
 --- !u!4 &196295067
 Transform:
   m_ObjectHideFlags: 0
@@ -501,14 +504,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 196295063}
-  m_LocalRotation: {x: -0, y: -0, z: 0.70398754, w: -0.7102123}
-  m_LocalPosition: {x: 19.12, y: 0.89, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: 0.004210959, w: 0.9999912}
+  m_LocalPosition: {x: 10.13, y: 5.03, z: 0}
   m_LocalScale: {x: 0.41298068, y: 0.41298068, z: 0.41298068}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 10
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -89.496}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0.483}
 --- !u!61 &196295068
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -522,18 +525,18 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 2.2904456, y: 0}
+  m_Offset: {x: -4.089416, y: -12.177613}
   m_SpriteTilingProperty:
     border: {x: 4.681143, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 7.3017826, y: 29.130001}
+    pivot: {x: 1, y: 1}
+    oldSize: {x: 9.8324, y: 29.130001}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.7208915, y: 29.130001}
+  m_Size: {x: 3.4479673, y: 24.74446}
   m_EdgeRadius: 0
 --- !u!222 &196295069
 CanvasRenderer:

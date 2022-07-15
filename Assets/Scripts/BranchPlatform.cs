@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class BranchPlatform : Plant
 {
-    private Animator anim;
-
+    [SerializeField] private Animator anim;
     public BoxCollider2D playerBoxCollider;
-    
+    public Sprite spriteRenderer;
+    public Sprite healthySprite;
     private void Awake()
     {
         anim = GetComponent<Animator>();
@@ -18,7 +18,9 @@ public class BranchPlatform : Plant
         isAlive = life > 50;
         Physics2D.IgnoreCollision(playerBoxCollider,
                         GetComponent<BoxCollider2D>(), 
-                        !isAlive);        
+                        !isAlive);
+        anim.SetBool("BranchGrowth", isAlive);
+        this.gameObject.GetComponent<SpriteRenderer>().sprite = isAlive ? healthySprite : spriteRenderer;
     }
     
     private void OnCollisionEnter2D(Collision2D collision)
