@@ -4,9 +4,7 @@ using UnityEngine;
 
 public class BranchPlatform : MonoBehaviour
 {
-    
-    [SerializeField] private Rigidbody2D rb;
-    private Animator anim;
+    [SerializeField] private Animator anim;
     public float life = 0.0f;
     private readonly float lifeDecay = 0.05f;
     private readonly float LIFECAP = 100.0f;
@@ -23,10 +21,8 @@ public class BranchPlatform : MonoBehaviour
             life = LIFECAP;
         }        
     }
-    
     private void Awake()
     {
-        rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
     }
     
@@ -44,10 +40,12 @@ public class BranchPlatform : MonoBehaviour
         ChangeColor();
         if (isAlive)
         {
+            anim.SetBool("BranchGrowth", true);
             this.gameObject.GetComponent<SpriteRenderer>().sprite = healthySprite;
         }
         if (!isAlive)
         {
+            anim.SetBool("BranchGrowth", false);
             this.gameObject.GetComponent<SpriteRenderer>().sprite = spriteRenderer;
         } 
     }
