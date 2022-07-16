@@ -16,9 +16,17 @@ public class BranchPlatform : Plant
     private void FixedUpdate()
     {
         isAlive = life > 50;
-        Physics2D.IgnoreCollision(playerBoxCollider,
-                        GetComponent<BoxCollider2D>(), 
-                        !isAlive);
+        // if (this.gameObject.tag == "NoPass")
+        // {}
+        // else
+        // {
+        //     Physics2D.IgnoreCollision(playerBoxCollider, 
+        //         GetComponent<BoxCollider2D>(), 
+        //         !isAlive);
+        // }
+        Physics2D.IgnoreCollision(playerBoxCollider, 
+            GetComponent<BoxCollider2D>(), 
+            !isAlive);
         anim.SetBool("BranchGrowth", isAlive);
         this.gameObject.GetComponent<SpriteRenderer>().sprite = isAlive ? healthySprite : spriteRenderer;
     }
