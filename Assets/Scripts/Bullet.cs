@@ -6,12 +6,27 @@ public class Bullet : MonoBehaviour
 {
     public float speed = 10f;
     public Rigidbody2D rb;
+    private Animator anim;
+    public float animDelay = 1.0f;
 
     // Start is called before the first frame update
     void Start()
     {
         rb.velocity = transform.right * speed;    
         Destroy(gameObject, 5.0f);    
+    }
+
+    void Awake() 
+    {
+        anim = GetComponent<Animator>();
+    }
+
+    void FixedUpdate() {
+        animDelay -= 0.1f;
+        if (animDelay <= 0)
+        {
+            anim.SetBool("bulletAnim", true);
+        }
     }
 
     void OnTriggerEnter2D (Collider2D other)
